@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.org/dtd/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+	<table-filter match-schema="ligue1_gamble" match-name=".*" />
+	<table-filter match-name="bet" match-catalog="ligue1_gamble"></table-filter>
+	<table-filter match-name="bookmaker"
+		match-catalog="ligue1_gamble">
+	</table-filter>
+	<table-filter match-name="club" match-catalog="ligue1_gamble"></table-filter>
+	<table-filter match-name="gambling" match-catalog="ligue1_gamble"></table-filter>
+	<table-filter match-name="match" match-catalog="ligue1_gamble"></table-filter>
+	<table-filter match-name="person" match-catalog="ligue1_gamble"></table-filter>
+	<table-filter match-name="results" match-catalog="ligue1_gamble"></table-filter>
+	<table-filter match-name="user" match-catalog="ligue1_gamble"></table-filter>
+	<table-filter match-name="user_role"
+		match-catalog="ligue1_gamble">
+	</table-filter>
+	<table-filter match-name="wallet" match-catalog="ligue1_gamble"></table-filter>
+</hibernate-reverse-engineering>

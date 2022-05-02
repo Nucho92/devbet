@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
+        <property name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+        <property name="hibernate.connection.password">123456</property>
+        <property name="hibernate.connection.url">jdbc:mysql://localhost:3306/gestion_rh</property>
+        <property name="hibernate.connection.username">root</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.hbm2ddl.auto">none</property>
+        <property name="hibernate.search.autoregister_listeners">true</property>
+        <property name="hibernate.validator.apply_to_ddl">false</property>
+        <mapping class="fr.formation.inti.entities.Club" />
+        <mapping class="fr.formation.inti.entities.Gambling" />
+        <mapping class="fr.formation.inti.entities.Person" />
+        <mapping class="fr.formation.inti.entities.Wallet" />
+        <mapping class="fr.formation.inti.entities.User" />
+        <mapping class="fr.formation.inti.entities.UserRole" />
+        <mapping class="fr.formation.inti.entities.Bet" />
+        <mapping class="fr.formation.inti.entities.Bookmaker" />
+        <mapping class="fr.formation.inti.entities.Match" />
+        <mapping class="fr.formation.inti.entities.Results" />
+    </session-factory>
+</hibernate-configuration>
