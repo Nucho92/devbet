@@ -1,5 +1,5 @@
 package fr.formation.inti.entities;
-// Generated 2 mai 2022, 09:16:13 by Hibernate Tools 4.3.5.Final
+// Generated 2 mai 2022, 12:30:48 by Hibernate Tools 4.3.5.Final
 
 import java.util.HashSet;
 import java.util.Set;
@@ -28,6 +28,7 @@ public class Club implements java.io.Serializable {
 	private Integer prestige;
 	private Integer points;
 	private String residency;
+	private String logoPath;
 	private Set<Results> resultses = new HashSet<Results>(0);
 	private Set<Bet> bets = new HashSet<Bet>(0);
 	private Set<Match> matchesForClubVisitor = new HashSet<Match>(0);
@@ -42,7 +43,7 @@ public class Club implements java.io.Serializable {
 	}
 
 	public Club(String name, Integer played, Integer won, Integer lost, Integer drawn, Integer prestige, Integer points,
-			String residency, Set<Results> resultses, Set<Bet> bets, Set<Match> matchesForClubVisitor,
+			String residency, String logoPath, Set<Results> resultses, Set<Bet> bets, Set<Match> matchesForClubVisitor,
 			Set<Match> matchesForClubHome) {
 		this.name = name;
 		this.played = played;
@@ -52,6 +53,7 @@ public class Club implements java.io.Serializable {
 		this.prestige = prestige;
 		this.points = points;
 		this.residency = residency;
+		this.logoPath = logoPath;
 		this.resultses = resultses;
 		this.bets = bets;
 		this.matchesForClubVisitor = matchesForClubVisitor;
@@ -140,6 +142,15 @@ public class Club implements java.io.Serializable {
 
 	public void setResidency(String residency) {
 		this.residency = residency;
+	}
+
+	@Column(name = "logo_path", length = 200)
+	public String getLogoPath() {
+		return this.logoPath;
+	}
+
+	public void setLogoPath(String logoPath) {
+		this.logoPath = logoPath;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "club")
