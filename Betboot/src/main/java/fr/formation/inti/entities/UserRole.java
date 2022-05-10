@@ -1,11 +1,13 @@
 package fr.formation.inti.entities;
-// Generated 2 mai 2022, 09:16:13 by Hibernate Tools 4.3.5.Final
+// Generated 4 mai 2022, 11:33:36 by Hibernate Tools 4.3.5.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -46,7 +48,7 @@ public class UserRole implements java.io.Serializable {
 		this.roleId = roleId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "user_id", nullable = false)
 	public User getUser() {
 		return this.user;

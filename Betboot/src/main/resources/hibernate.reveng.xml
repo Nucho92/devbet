@@ -7,14 +7,14 @@
 	<table-filter match-name="bookmaker"
 		match-catalog="ligue1_gamble">
 	</table-filter>
-	<table-filter match-name="club" match-catalog="ligue1_gamble"></table-filter>
 	<table-filter match-name="gambling" match-catalog="ligue1_gamble"></table-filter>
 	<table-filter match-name="match" match-catalog="ligue1_gamble"></table-filter>
-	<table-filter match-name="person" match-catalog="ligue1_gamble"></table-filter>
 	<table-filter match-name="results" match-catalog="ligue1_gamble"></table-filter>
-	<table-filter match-name="user" match-catalog="ligue1_gamble"></table-filter>
 	<table-filter match-name="user_role"
 		match-catalog="ligue1_gamble">
 	</table-filter>
 	<table-filter match-name="wallet" match-catalog="ligue1_gamble"></table-filter>
+	<table-filter match-name="club" match-catalog="ligue1_gamble"></table-filter>
+	<table-filter match-name="user" match-catalog="ligue1_gamble"></table-filter>
+	<table-filter match-name="person" match-catalog="ligue1_gamble"></table-filter>
 </hibernate-reverse-engineering>
