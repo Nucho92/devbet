@@ -1,5 +1,5 @@
 package fr.formation.inti.entities;
-// Generated 2 mai 2022, 09:16:13 by Hibernate Tools 4.3.5.Final
+// Generated 4 mai 2022, 11:33:36 by Hibernate Tools 4.3.5.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -27,6 +27,17 @@ public class Gambling implements java.io.Serializable {
 	private Integer amount;
 	private Date gamblingDate;
 	private Float gain;
+
+	
+	
+	@Override
+	public String toString() {
+		return "Gambling [gamblingId=" + gamblingId + ", bet=" + bet + ", user=" + user + ", amount=" + amount
+				+ ", gamblingDate=" + gamblingDate + ", gain=" + gain + ", getGamblingId()=" + getGamblingId()
+				+ ", getBet()=" + getBet() + ", getUser()=" + getUser() + ", getAmount()=" + getAmount()
+				+ ", getGamblingDate()=" + getGamblingDate() + ", getGain()=" + getGain() + ", getClass()=" + getClass()
+				+ ", hashCode()=" + hashCode() + ", toString()=" + super.toString() + "]";
+	}
 
 	public Gambling() {
 	}
@@ -80,7 +91,7 @@ public class Gambling implements java.io.Serializable {
 		this.amount = amount;
 	}
 
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "gambling_date", length = 10)
 	public Date getGamblingDate() {
 		return this.gamblingDate;
@@ -99,4 +110,5 @@ public class Gambling implements java.io.Serializable {
 		this.gain = gain;
 	}
 
+	
 }

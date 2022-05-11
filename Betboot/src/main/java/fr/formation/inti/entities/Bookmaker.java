@@ -1,8 +1,6 @@
 package fr.formation.inti.entities;
-// Generated 2 mai 2022, 09:16:13 by Hibernate Tools 4.3.5.Final
+// Generated 4 mai 2022, 11:33:36 by Hibernate Tools 4.3.5.Final
 
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -11,7 +9,6 @@ import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -25,16 +22,14 @@ public class Bookmaker implements java.io.Serializable {
 	private Match match;
 	private Integer betBalance;
 	private Integer betProfit;
-	private Set<Bet> bets = new HashSet<Bet>(0);
 
 	public Bookmaker() {
 	}
 
-	public Bookmaker(Match match, Integer betBalance, Integer betProfit, Set<Bet> bets) {
+	public Bookmaker(Match match, Integer betBalance, Integer betProfit) {
 		this.match = match;
 		this.betBalance = betBalance;
 		this.betProfit = betProfit;
-		this.bets = bets;
 	}
 
 	@Id
@@ -75,15 +70,6 @@ public class Bookmaker implements java.io.Serializable {
 
 	public void setBetProfit(Integer betProfit) {
 		this.betProfit = betProfit;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "bookmaker")
-	public Set<Bet> getBets() {
-		return this.bets;
-	}
-
-	public void setBets(Set<Bet> bets) {
-		this.bets = bets;
 	}
 
 }

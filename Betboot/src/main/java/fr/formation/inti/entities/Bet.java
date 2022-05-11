@@ -1,11 +1,13 @@
 package fr.formation.inti.entities;
-// Generated 2 mai 2022, 09:16:13 by Hibernate Tools 4.3.5.Final
+// Generated 4 mai 2022, 11:33:36 by Hibernate Tools 4.3.5.Final
 
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,8 +21,7 @@ import javax.persistence.Table;
 @Table(name = "bet", catalog = "ligue1_gamble")
 public class Bet implements java.io.Serializable {
 
-	private int betId;
-	private Bookmaker bookmaker;
+	private Integer betId;
 	private Club club;
 	private Match match;
 	private Integer nbGambler;
@@ -30,16 +31,11 @@ public class Bet implements java.io.Serializable {
 	public Bet() {
 	}
 
-	public Bet(int betId, Bookmaker bookmaker, Match match) {
-		this.betId = betId;
-		this.bookmaker = bookmaker;
+	public Bet(Match match) {
 		this.match = match;
 	}
 
-	public Bet(int betId, Bookmaker bookmaker, Club club, Match match, Integer nbGambler, Float rating,
-			Set<Gambling> gamblings) {
-		this.betId = betId;
-		this.bookmaker = bookmaker;
+	public Bet(Club club, Match match, Integer nbGambler, Float rating, Set<Gambling> gamblings) {
 		this.club = club;
 		this.match = match;
 		this.nbGambler = nbGambler;
@@ -48,27 +44,18 @@ public class Bet implements java.io.Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "bet_id", unique = true, nullable = false)
-	public int getBetId() {
+	public Integer getBetId() {
 		return this.betId;
 	}
 
-	public void setBetId(int betId) {
+	public void setBetId(Integer betId) {
 		this.betId = betId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "bookmaker_id", nullable = false)
-	public Bookmaker getBookmaker() {
-		return this.bookmaker;
-	}
-
-	public void setBookmaker(Bookmaker bookmaker) {
-		this.bookmaker = bookmaker;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "club_id")
 	public Club getClub() {
 		return this.club;
@@ -78,7 +65,7 @@ public class Bet implements java.io.Serializable {
 		this.club = club;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "match_id", nullable = false)
 	public Match getMatch() {
 		return this.match;
@@ -106,7 +93,7 @@ public class Bet implements java.io.Serializable {
 		this.rating = rating;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "bet")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "bet")
 	public Set<Gambling> getGamblings() {
 		return this.gamblings;
 	}

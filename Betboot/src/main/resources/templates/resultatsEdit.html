@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link
+    href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+    rel="stylesheet">
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.3/animate.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js">
+  <link rel="stylesheet" href=" https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://fonts.googleapis.com/icon?family=Material+Icons">
+ 
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/main.css">
+  <title>Edition résultats</title>
+</head>
+
+<body>
+
+  <nav class="navbar navbar-default banner">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+					aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/index"><img id="logo" alt="logo" src="/images/logobetboot.png"/></a>
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
+
+				<form class="navbar-form navbar-right navbar-form-search"
+					role="search">
+					<div class="search-form-container hdn" id="search-input-container">
+						<div class="search-input-group">
+							<button type="button" class="btn btn-default"
+								id="hide-search-input-container">
+								<span class="glyphicon glyphicon-option-horizontal"
+									aria-hidden="true"></span>
+							</button>
+							<div class="form-group">
+								<input type="text" class="form-control"
+									placeholder="Search for...">
+							</div>
+						</div>
+
+					</div>
+
+					<!-- <button type="submit" class="btn btn-default" id="search-button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button> -->
+				</form>
+				<ul class="nav navbar-nav navbar-left navbar-nav-primary-left">
+					<li><a href="/testbet">Paris sportifs</a></li>
+					<li><a href="/resultats">Résultats</a></li>
+					<li><a href="/classement">Classement</a></li>
+
+				</ul>
+				<ul class="nav navbar-nav navbar-right navbar-nav-primary-right"
+					th:if="${user.mail != null}">
+					<li><a href="/logout">Se deconnecter</a></li>
+					<li><a href="/myprofile" th:text="${firstName}"> prénom </a></li>
+
+				</ul>
+				<ul class="nav navbar-nav navbar-right navbar-nav-primary-right"
+					th:unless="${user.mail != null}">
+					<li><a href="/new">S'inscrire</a></li>
+					<li><a href="/login">Se connecter</a></li>
+					
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container-fluid -->
+	</nav>
+
+
+
+  <!-- Remplissage match  -->
+		<h1 id="h1resulatsEdit">Résultats Match</h1>
+		
+		<div class="container" id="containerEdit">
+<!--         <hr> -->
+ 
+ <br>
+ <br>
+  
+    
+	<form class="form-inline" action="#" th:action="@{/resultats/saveResults}" th:object="${result}" method="POST">
+	
+            <!-- Add hidden form field to handle update -->
+            <input type="hidden" th:field="${result.resultId}" />
+            <input type="hidden" th:field="${result.match.matchId}" />
+	<div class="row justify-content-center" id="rowEdit">
+            <label th:utext="${result.match.clubByClubHome.name}" class="col-sm-2 col-form-label" id="labeledit"></label>
+        
+            <input type="text" th:field="${result.scoreA}" class="form-control mb-4 col-4" id="inputEdit" size="1">
+    	
+			<input type="text" th:field="${result.scoreB}" class="form-control mb-4 col-4" id="inputEdit" size="1">
+			
+			<label th:utext="${result.match.clubByClubVisitor.name}" class="col-sm-2 col-form-label" id="labeledit"></label>
+    </div>
+    
+    <br><br>
+    <div class="row justify-content-center" id="rowEdit">
+    <label class="col-sm-2 col-form-label" id="labeledit"> Match Nul </label>
+    <input id='selectall' class="selectall" type="checkbox" checked="checked">
+    <input type="checkbox" id="matchNul" name="active" th:field="${result.clubByDrawHomeId}" th:value="${result.match.clubByClubHome.clubId}" >
+    <input type="checkbox" id="matchNul" name="active" th:field="${result.clubByDrawVisitorId}" th:value="${result.match.clubByClubVisitor.clubId}" >
+    </div>
+    
+    <br><br>
+    
+    <fieldset class="matchNonNul">
+    <div class="row justify-content-center" id="rowEdit">
+    <label class="col-sm-2 col-form-label" id="labeledit">Victoire de :</label>
+    <select th:field="${result.clubByVictoryId}">
+    <option th:value="${null}"> -- </option>
+    <option th:value="${result.match.clubByClubHome.clubId}" th:text="${result.match.clubByClubHome.name}"></option>
+    <option th:value="${result.match.clubByClubVisitor.clubId}" th:text="${result.match.clubByClubVisitor.name}"></option>
+</select>
+    </div>
+    
+    <br><br>
+    
+    <div class="row justify-content-center" id="rowEdit">
+    <label class="col-sm-2 col-form-label" id="labeledit">Défaite de :</label>
+    <select th:field="${result.clubByLoseId}">
+    <option th:value="${null}"> -- </option>
+    <option th:value="${result.match.clubByClubHome.clubId}" th:text="${result.match.clubByClubHome.name}"></option>
+    <option th:value="${result.match.clubByClubVisitor.clubId}" th:text="${result.match.clubByClubVisitor.name}"></option>
+</select>
+    </div>
+    </fieldset>
+    <br><br>
+  
+	<div class="row justify-content-center" id="rowEdit">
+            <button type="submit" class="btn btn-info col-1" id="btnEdit"> Mettre à jour le Match</button>
+	</div>
+	
+	</form>
+        <hr>
+
+        <a th:href="@{/resultats}"> Retour aux matchs</a>
+    </div>
+    
+    
+			
+
+<!-- FOOTER -->
+
+
+<!--  FOOTER END -->
+  
+
+  <!-- <div class="pagination">
+    <div class="prev">Prev</div>
+    <div class="page">Page <span class="page-num"></span></div>
+    <div class="next">Next</div>
+  </div> -->
+
+  <!-- <div>
+    <button class="btn" onclick="firstPage()">|< </button>
+        <button class="btn" onclick="previous()">
+          < </button>
+            <span id="pageInfo"></span>
+            <button class="btn" onclick="nextPage()">></button>
+            <button class="btn" onclick="lastPage()">>|</button>
+  </div> -->
+
+
+  <!-- Scripte  -->
+  <script src="js/pagination.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+<script> $('#button1').on('click', function () {
+      $('#hiddenbox').prop('checked', true);
+      console.log($('#hiddenbox').prop('checked')); });</script>
+  <script>    
+      $('#selectall').change(function () {
+    if ($(this).prop('checked')) {
+        $('input').prop('checked', true);
+    } else {
+        $('input').prop('checked', false);
+    }
+});
+$('#selectall').trigger('change');
+</script>
+
+<script>
+$(".matchNonNul").hide();
+$(".selectall").click(function() {
+    if($(this).is(":checked")) {
+    	$(".matchNonNul").hide();
+    } else {
+    	$(".matchNonNul").show();
+    }
+});
+</script>
+
+</body>
+
+</html>

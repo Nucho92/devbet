@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html xmlns:th="http//www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- link de la navbar rouge de départ -->
+
+  <link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.3/animate.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js">
+<link rel="stylesheet"
+	href=" https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+
+<link rel="stylesheet" href="CSS/styleps.css">
+
+<!-- link du template soccer -->
+
+<link
+	href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
+	rel="stylesheet">
+	
+	<link
+	href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+	rel="stylesheet">
+
+<link rel="stylesheet" href="soccer-master/fonts/icomoon/style.css">
+
+<link rel="stylesheet" href="soccer-master/css/bootstrap/bootstrap.css">
+<link rel="stylesheet" href="soccer-master/css/jquery-ui.css">
+<link rel="stylesheet" href="soccer-master/css/owl.carousel.min.css">
+<link rel="stylesheet"
+	href="soccer-master/css/owl.theme.default.min.css">
+<link rel="stylesheet"
+	href="soccer-master/css/owl.theme.default.min.css">
+
+<link rel="stylesheet" href="soccer-master/css/jquery.fancybox.min.css">
+
+<link rel="stylesheet" href="soccer-master/css/bootstrap-datepicker.css">
+
+<link rel="stylesheet"
+	href="soccer-master/fonts/flaticon/font/flaticon.css">
+
+<link rel="stylesheet" href="soccer-master/css/aos.css">
+
+<link rel="stylesheet" href="css/bootstrap.css">
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/styleps2.css">
+
+
+
+  <title>Paris Sportifs</title>
+</head>
+
+<body>
+
+<nav class="navbar navbar-default banner">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+					aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/index"><img id="logo" alt="logo" src="/images/logobetboot.png"/></a>
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
+
+				<form class="navbar-form navbar-right navbar-form-search"
+					role="search">
+					<div class="search-form-container hdn" id="search-input-container">
+						<div class="search-input-group">
+							<button type="button" class="btn btn-default"
+								id="hide-search-input-container">
+								<span class="glyphicon glyphicon-option-horizontal"
+									aria-hidden="true"></span>
+							</button>
+							<div class="form-group">
+								<input type="text" class="form-control"
+									placeholder="Search for...">
+							</div>
+						</div>
+
+					</div>
+
+					<!-- <button type="submit" class="btn btn-default" id="search-button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button> -->
+				</form>
+				<ul class="nav navbar-nav navbar-left navbar-nav-primary-left">
+					<li><a href="/testbet">Paris sportifs</a></li>
+					<li><a href="/resultats">Résultats</a></li>
+					<li><a href="/classement">Classement</a></li>
+
+				</ul>
+				<ul class="nav navbar-nav navbar-right navbar-nav-primary-right"
+					th:if="${user.mail != null}">
+					<li><a href="/logout">Se deconnecter</a></li>
+					<li><a href="/myprofile" th:text="${firstName}"> prénom </a></li>
+
+				</ul>
+				<ul class="nav navbar-nav navbar-right navbar-nav-primary-right"
+					th:unless="${user.mail != null}">
+					<li><a href="/new">S'inscrire</a></li>
+					<li><a href="/login">Se connecter</a></li>
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container-fluid -->
+	</nav>
+
+
+  
+<div th:each="match,state:${listmatch}" class="Tableaffichage;" th:if="${#dates.createNow().before(match.match.date)}"> <!-- balise th:if="${#dates.createNow().before(match.match.date)}" pour ne faire apparaître que les match à venir -->
+  <div class=" red60"  > 
+    <div class="row " style="margin: 0 auto ;">
+      <div class="col-lg-12">
+
+        <div class="d-flex team-vs">  
+     <span class="Date2 " th:utext="${#dates.format(match.match.date,'dd/MM/yyyy HH:mm')}"> </span> 
+          <span class="Cotenul"> Côte du nul </span>
+          <span class="Valeurnul" th:utext="${match.cotedunull}" > </span>
+
+                      
+                           <form th:action="@{testpari}" method="post"> <!-- th:if="${user.username} ou th:if!=${session.isEmpty()}" à insérer dans cette balise div pour activer le button si l'utilisateur n'est pas connecté -->
+                       
+                            <span class="Messagenul">Montant de la mise</span> 
+                            <input type="number" class="inputnul" name="amount" placeholder="0,00€" ><br>
+                            <input type="submit" class="btn btn-dark submitnul"  value="Parier" onclick="myAlert()" >
+                            <input type="hidden" th:value="${match.cotedunull}" name="cote" />
+                            <input type="hidden" th:value="${match.BetIdDrawn}" name="betId" />
+							<input type="hidden" th:value="${match.match.matchId}" name="matchId" />
+							<input type="hidden" th:value="${match.match.matchId}" name="prestige" />
+                            
+                         
+					</form>
+                            
+                            
+                      
+          <!--  <div  >  <!-- th:if!="${user.username} ou th:if=${session.isEmpty()}" à insérer dans cette balise div pour activer le button si l'utilisateur n'est pas connecté 
+           <button type="button" class=" Pariernul btn btn-dark" data-toggle="modal" data-target="#myModal">Parier</button> 
+			 </div>-->
+             
+          <div class="team-1 w-50"> 
+            <div class="team-details w-100 text-center">
+              <img th:src="@{${match.match.clubByClubHome.logoPath}}" class="img-fluid "/>
+              <h3 th:utext="${match.match.clubByClubHome.name}"></h3>
+              <ul class="list-unstyled">
+                <li>côte victoire</li>
+                <li th:utext="${match.cotevictoryclubhome}"></li>
+                </ul> 
+               <form th:action="@{testpari}" method="post" > <!-- th:if="${user.username} ou th:if!=${session.isEmpty()}" à insérer dans cette balise div pour activer le button si l'utilisateur n'est pas connecté -->
+                          <div class="col" >
+                            <p >Montant de la mise</p> 
+                            <input type="number" class="inputvictoire" name="amount" placeholder="0,00€" ><br>
+                            <input type="submit" class="btn btn-dark submitvictoire"  value="Parier" onclick="myAlert()" >
+                            <input type="hidden" th:value="${match.cotevictoryclubhome}" name="cote" />
+                            <input type="hidden" th:value="${match.BetIdClubHome}" name="betId" />
+                             <input type="hidden" th:value="${match.match.matchId}" name="matchId" />
+                           </div>
+					</form> 
+                
+                
+                
+                <!--  <div>  <!-- th:if!="${user.username} ou th:if=${session.isEmpty()}" à insérer dans cette balise div pour activer le button si l'utilisateur n'est pas connecté  
+                <button type="button"  class="btn btn-dark"  data-toggle="modal" data-target="#myModal">Parier</button> 
+                																								
+				</div> -->
+            
+    
+            </div>
+          </div>
+          <div class="team-2 w-50">
+            <div class="team-details w-100 text-center">
+              <img th:src="@{${match.match.clubByClubVisitor.logoPath}}" class="img-fluid "/>
+              <h3 th:utext="${match.match.clubByClubVisitor.name}"> </h3>
+              <ul class="list-unstyled">
+                <li>côte victoire</li>
+                <li th:utext="${match.cotevictoryclubvisitor}"></li>
+              </ul> 
+                 <form th:action="@{testpari}"  method="POST"> 
+                           <div class="col" >  
+                            <p >Montant de la mise</p> 
+                            <input type="number" class="inputvictoire"  placeholder="0,00€" name="amount"><br> 
+                            <input type="submit" class="btn btn-dark submitvictoire"  value="Parier" onclick="myAlert()" >
+                             <input type="hidden" th:value="${match.cotevictoryclubvisitor}" name="cote" /> 
+                             <input type="hidden" th:value="${match.BetIdClubvisitor}" name="betId" />
+                         <input type="hidden" th:value="${match.match.matchId}" name="matchId" />                        
+                           </div>
+					</form>
+                
+                
+                
+               <!-- <div> <!--  th:if!="${message} ou th:if!=${session.isEmpty()}" à insérer dans cette balise div pour activer le button quand si l'utilisateur n'est pas connecté 
+                <button type="button"  class="btn btn-dark"  data-toggle="modal" data-target="#myModal">Parier</button> <!-- Button to Open the Modal 
+                																								
+				<!--</div> -->
+                
+                
+
+            </div>
+          </div>
+        </div>
+        
+      </div>
+     </div>
+    </div>
+   </div>
+      
+              
+
+<!-- The Modal  user méconnu (pop up qui se déclenche si un utilisateur non connecté cherche à parier-->
+      <div class="modal" id="myModal">
+         <div class="modal-dialog">
+            <div class="modal-content">
+               <!-- Modal Header -->
+               <div class="modal-header">
+                  <h4 class="modal-title">Modal Heading</h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+               </div>
+               <!-- Modal body -->
+               <div class="modal-body">
+                  Vous devez disposer d'un compte pour parier.<br>
+                  Que décidez-vous de faire ?
+                  
+               </div>
+               <!-- Modal footer -->
+               <div class="modal-footer">
+                <button type="button" class="btn btn-danger btn-lg btn-block">M'inscrire</button>
+                <br>
+				<button type="button" class="btn btn-secondary btn-lg btn-block">Me connecter</button>
+               </div>
+            </div>
+         </div>
+      </div>
+
+<!-- Fin du Modal -->
+
+
+
+
+ 
+
+
+<!-- script perso -->
+<script>
+function myAlert() {
+  alert('Merci pour ton pari !' );
+  }
+</script>
+
+  <!-- script de la navbar rouge de départ -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+
+  <!-- script du template soccer  -->
+  <script src="soccer-master/js/jquery-3.3.1.min.js"></script>
+  <script src="soccer-master/js/jquery-migrate-3.0.1.min.js"></script>
+  <script src="soccer-master/js/jquery-ui.js"></script>
+  <script src="soccer-master/js/popper.min.js"></script>
+  <script src="soccer-master/js/bootstrap.min.js"></script>
+  <script src="soccer-master/js/owl.carousel.min.js"></script>
+  <script src="soccer-master/js/jquery.stellar.min.js"></script>
+  <script src="soccer-master/js/jquery.countdown.min.js"></script>
+  <script src="soccer-master/js/bootstrap-datepicker.min.js"></script>
+  <script src="soccer-master/js/jquery.easing.1.3.js"></script>
+  <script src="soccer-master/js/aos.js"></script>
+  <script src="soccer-master/js/jquery.fancybox.min.js"></script>
+  <script src="soccer-master/js/jquery.sticky.js"></script>
+  <script src="soccer-master/js/jquery.mb.YTPlayer.min.js"></script>
+  <script src="soccer-master/js/main.js"></script>
+
+
+
+</body>
+
+</html>

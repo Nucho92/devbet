@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Font special for pages-->
+<link
+	href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+	rel="stylesheet">
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.3/animate.min.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js">
+<link rel="stylesheet"
+	href=" https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+
+<link
+	href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap"
+	rel="stylesheet">
+
+<link rel="stylesheet" href="fonts/icomoon/style.css">
+
+<link rel="stylesheet" href="css/bootstrap/bootstrap.css">
+<link rel="stylesheet" href="css/jquery-ui.css">
+<link rel="stylesheet" href="css/owl.carousel.min.css">
+<link rel="stylesheet" href="css/owl.theme.default.min.css">
+
+<link rel="stylesheet" href="css/jquery.fancybox.min.css">
+
+<link rel="stylesheet" href="css/bootstrap-datepicker.css">
+
+<link rel="stylesheet" href="fonts/flaticon/font/flaticon.css">
+
+
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/stylesoc.css">
+
+
+<title>Accueil</title>
+</head>
+
+<body>
+
+	<nav class="navbar navbar-default banner">
+		<div class="container-fluid">
+			<!-- Brand and toggle get grouped for better mobile display -->
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed"
+					data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+					aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/index"><img id="logo" alt="logo" src="/images/logobetboot.png"/></a>
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse"
+				id="bs-example-navbar-collapse-1">
+
+				<form class="navbar-form navbar-right navbar-form-search"
+					role="search">
+					<div class="search-form-container hdn" id="search-input-container">
+						<div class="search-input-group">
+							<button type="button" class="btn btn-default"
+								id="hide-search-input-container">
+								<span class="glyphicon glyphicon-option-horizontal"
+									aria-hidden="true"></span>
+							</button>
+							<div class="form-group">
+								<input type="text" class="form-control"
+									placeholder="Search for...">
+							</div>
+						</div>
+
+					</div>
+
+					<!-- <button type="submit" class="btn btn-default" id="search-button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button> -->
+				</form>
+				<ul class="nav navbar-nav navbar-left navbar-nav-primary-left">
+				
+					<li><a href="/testbet">Paris sportifs</a></li>
+					<li><a href="/resultats">Résultats</a></li>
+					<li><a href="/classement">Classement</a></li>
+
+				</ul>
+				<ul class="nav navbar-nav navbar-right navbar-nav-primary-right"
+					th:if="${user.mail != null}">
+					<li><a href="/logout">Se deconnecter</a></li>
+					<li><a href="/myprofile" th:text="${firstName}"> prénom </a></li>
+
+				</ul>
+				<ul class="nav navbar-nav navbar-right navbar-nav-primary-right"
+					th:unless="${user.mail != null}">
+					<li><a href="/new">S'inscrire</a></li>
+					<li><a href="/login">Se connecter</a></li>
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container-fluid -->
+	</nav>
+
+
+	<div class="container">
+
+		<div class="row mb-5" id="matchcont">
+			<div class="col-lg-12">
+				<div class="widget-next-match">
+					<div class="widget-title">
+						<h3>Prochain match</h3>
+					</div>
+					<div class="widget-body mb-3">
+						<div class="widget-vs">
+							<div
+								class="d-flex align-items-center justify-content-around justify-content-between w-100">
+								<div class="team-1 text-center">
+							 	<img th:src="@{${match.clubByClubHome.logoPath}}"  >	
+									<h3 th:utext="${match.clubByClubHome.name}">Football Ligue 1</h3>
+								</div>
+								<div>
+									<span class="vs"><span>VS</span></span>
+								</div>
+								<div class="team-2 text-center">
+									<img th:src="@{${match.clubByClubVisitor.logoPath}}"  >	
+									<h3 th:utext="${match.clubByClubVisitor.name}">Soccer</h3>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="text-center widget-vs-contents mb-4">
+						<h4>Football Ligue 1</h4>
+						<p class="mb-5">
+							<span class="d-block" th:utext="${#dates.format(match.date,'dd-MM-yyyy')}">December 20th, 2020</span> <span
+								class="d-block" th:utext="${#dates.format(match.date,'HH:mm')}">9:30 AM GMT+0</span> <strong
+								class="text-primary" th:utext="${match.clubByClubHome.residency}">New Euro Arena</strong>
+						</p>
+
+						<br>
+						<!-- <span class="countdown-block"></span> -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<!-- .site-section -->
+
+
+	<!-- .site-wrap -->
+
+	<script src="js/jquery-3.3.1.min.js"></script>
+	<script src="js/jquery-migrate-3.0.1.min.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script src="js/owl.carousel.min.js"></script>
+	<script src="js/jquery.stellar.min.js"></script>
+	<script src="js/jquery.countdown.min.js"></script>
+	<script src="js/bootstrap-datepicker.min.js"></script>
+	<script src="js/aos.js"></script>
+
+
+
+	<script src="js/main.js"></script>
+
+
+
+	<script
+		src=»https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js»></script>
+	<script
+		src=»https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js”></script>
+</body>
+
+</html>

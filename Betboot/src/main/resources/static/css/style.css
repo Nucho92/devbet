@@ -1,0 +1,338 @@
+.banner {
+	background: rgb(49, 2, 2);
+	font-family: inherit;
+	padding-top: 25px;
+	padding-bottom: 25px;
+	font-size: 20px;
+	border: 0px;
+	position: fixed;
+	z-index: 3;
+	/* Set the navbar to fixed position */
+	top: 0;
+	/* Position the navbar at the top of the page */
+	width: 100%;
+	/* Full width */
+	/* border-radius:  10px 100px / 120px; */
+}
+
+.nav.navbar-nav li a {
+	color: #fff;
+}
+
+.navbar-default .navbar-brand {
+	margin-bottom: 0px;
+}
+
+.navbar-brand {
+	float: left;
+	height: 50px;
+	padding: 15px 30px;
+	font-size: 18px;
+	line-height: 20px;
+	margin-right: 50px;
+}
+
+.navbar>.container-fluid .navbar-brand {
+	margin-left: 20px;
+	margin-top: -20px;
+	margin-right: 0px;
+}
+
+body {
+	background-image:
+		url(/images/wallpapertip_football-wallpapers-hd_27121.jpg);
+	background-size: 100% auto;
+	background-color: black;
+	background-repeat: no-repeat;
+	position: relative;
+	font-family: "Poppins", "Arial", "Helvetica Neue", sans-serif;
+}
+
+.navbar-nav-primary-left {
+	font-size: 20px;
+}
+
+.navbar-nav-primary {
+	text-transform: uppercase;
+}
+
+.navbar-form-search {
+	position: relative;
+}
+
+.navbar-form-search .form-control {
+	width: 250px;
+}
+
+.navbar-form-search .btn {
+	border: 0;
+	background: transparent;
+	font-size: 18px;
+}
+
+.navbar-form-search .btn:active, .navbar-form-search .btn:hover,
+	.navbar-form-search .btn:focus {
+	color: rgb(12, 12, 12);
+	outline: none;
+	box-shadow: none;
+}
+
+.navbar-form-search .search-form-container {
+	text-align: right;
+	position: absolute;
+	width: 300px;
+	overflow: hidden;
+	background: #fff;
+	right: 60px;
+	top: 0;
+	z-index: 9;
+	transition: all 0.3s ease-in-out;
+}
+
+.navbar-form-search .search-form-container.hdn {
+	width: 0;
+}
+
+.navbar-form-search .search-form-container .search-input-group {
+	width: 300px;
+}
+
+h1 {
+	color: rgb(248, 245, 245);
+	text-align: center;
+	margin-top: auto;
+	margin-bottom: auto;
+}
+
+h5 {
+	color: rgb(250, 243, 243);
+	text-align: center;
+	margin-top: auto;
+	margin-bottom: auto;
+}
+
+.table {
+	width: 100%;
+	max-width: 100%;
+	margin-bottom: 20px;
+	margin-top: 50px;
+}
+
+.tableau {
+	margin-top: 20px;
+	padding: 100px;
+	color: rgb(39, 196, 136);
+}
+
+#imageprofil {
+	width: 200px;
+	height: 200px;
+	display: block;
+	margin: auto;
+	margin-bottom: 30px;
+}
+
+.imageprofil-carree {
+	clip-path: ellipse(50% 50%);
+}
+
+#btnphoto {
+	width: 70px;
+	margin: auto;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	padding: 0px;
+	font-size: 15px;
+}
+
+#rowprofil {
+	display: flex;
+	flex-wrap: nowrap;
+	margin-right: 0px;
+	margin-left: -15px;
+	flex-direction: row;
+	align-content: stretch;
+	justify-content: space-evenly;
+}
+
+#logo {
+	width: 150px;
+	padding-bottom: 0px;
+}
+
+#payementbtn {
+	margin-left: 0px;
+}
+
+#btnedit {
+	margin-left: 0px;
+	width: 20px;
+	text-align: center;
+	padding-left: 20px;
+}
+
+#btnsauv {
+	margin-left: 0px;
+	width: 140px;
+	text-align: center;
+	padding-left: 20px;
+}
+
+#btnannule {
+	margin-left: 0px;
+	width: 140px;
+	text-align: center;
+	padding-left: 40px;
+	background: black;
+}
+
+.badge {
+	padding: 3px 20px;
+	font-size: 15px;
+	font-weight: 200;
+	line-height: 3;
+}
+
+.infoprofil {
+	margin: 100px 80px;
+}
+
+td {
+	background-color: black;
+}
+
+th {
+	color: white;
+}
+
+.btn {
+	color: rgb(39, 196, 136);
+	background-color: black;
+}
+
+a {
+	color: rgb(121, 118, 118);
+}
+
+a:hover {
+	color: black;
+}
+
+.pagination li:hover {
+	cursor: pointer;
+}
+
+.widget-next-match {
+	border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.widget-title h3 {
+	margin: 0;
+	padding: 0;
+	font-size: 16px;
+	color: #fff;
+	font-weight: 700;
+}
+
+.widget-vs .vs>span {
+	display: inline-block;
+	font-size: 12px;
+	background: #ee1e46;
+	padding: 5px 20px;
+	border-radius: 30px;
+	color: #fff;
+	font-weight: 700;
+}
+
+.container {
+	margin-top: 300px;
+	position: relative;
+}
+
+.blocthx {
+	margin: auto auto;
+}
+
+#labeledit {
+	text-align: center;
+	color: white;
+	font-size: 20px
+}
+
+#lignematch {
+	content: center;
+}
+
+#inputEdit {
+	text-align: center;
+	font-size: 20px
+}
+
+#rowEdit {
+	display: flex;
+	justify-content: center;
+	align-content: center;
+}
+
+#btnEdit {
+	margin-left: 0px;
+}
+
+#containerEdit {
+	margin-top: 50px;
+}
+
+#h1resulatsEdit {
+	margin-top: 150px;
+}
+
+#tableauClassement {
+	display: table;
+	line-height: 1.7;
+	color: rgb(255, 255, 255);
+	font-weight: 300;
+	text-indent: initial;
+	border-spacing: 2px;
+	border-color: rgb(49, 2, 2);
+	background-color: rgb(49, 2, 2);
+	margin-top: 0px;
+	text-align: center;
+	font-size: 18px
+}
+
+#matchNul {
+	display: none;
+}
+
+#trEnd {
+	text-align: end;
+}
+
+#trcenter {
+	text-align: center;
+}
+
+#rowPagination {
+	display: flex;
+	align-items: center;
+	flex-direction: row;
+	align-content: flex-start;
+	justify-content: space-between;
+}
+
+.material-symbols-outlined {
+	display: flex;
+	align-items: center;
+	flex-direction: row;
+	align-content: flex-start;
+	justify-content: space-between;
+}
+
+.containerhistory {
+	padding: 200px 100px;
+	color: white;
+}
+
+#ablanc {
+	color: white;
+}

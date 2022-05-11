@@ -1,5 +1,9 @@
 package fr.formation.inti.entities;
+
 // Generated 2 mai 2022, 12:30:48 by Hibernate Tools 4.3.5.Final
+
+// Generated 9 mai 2022, 11:57:32 by Hibernate Tools 4.3.5.Final
+
 
 import java.util.HashSet;
 import java.util.Set;
@@ -29,10 +33,24 @@ public class Club implements java.io.Serializable {
 	private Integer points;
 	private String residency;
 	private String logoPath;
+
 	private Set<Results> resultses = new HashSet<Results>(0);
+
+	private Set<Results> resultsesForVictoryId = new HashSet<Results>(0);
+	private Set<Results> resultsesForDrawHomeId = new HashSet<Results>(0);
+
 	private Set<Bet> bets = new HashSet<Bet>(0);
 	private Set<Match> matchesForClubVisitor = new HashSet<Match>(0);
+	private Set<Results> resultsesForDrawVisitorId = new HashSet<Results>(0);
 	private Set<Match> matchesForClubHome = new HashSet<Match>(0);
+	private Set<Results> resultsesForLoseId = new HashSet<Results>(0);
+
+	
+	
+	@Override
+	public String toString() {
+		return "Club [clubId=" + clubId + ", name=" + name + "]";
+	}
 
 	public Club() {
 	}
@@ -43,8 +61,12 @@ public class Club implements java.io.Serializable {
 	}
 
 	public Club(String name, Integer played, Integer won, Integer lost, Integer drawn, Integer prestige, Integer points,
-			String residency, String logoPath, Set<Results> resultses, Set<Bet> bets, Set<Match> matchesForClubVisitor,
-			Set<Match> matchesForClubHome) {
+
+			String residency, String logoPath, Set<Results> resultsesForVictoryId, Set<Results> resultsesForDrawHomeId,
+			Set<Bet> bets, Set<Match> matchesForClubVisitor, Set<Results> resultsesForDrawVisitorId,
+			Set<Match> matchesForClubHome, Set<Results> resultsesForLoseId) {
+
+
 		this.name = name;
 		this.played = played;
 		this.won = won;
@@ -54,10 +76,15 @@ public class Club implements java.io.Serializable {
 		this.points = points;
 		this.residency = residency;
 		this.logoPath = logoPath;
-		this.resultses = resultses;
+
+		this.resultsesForVictoryId = resultsesForVictoryId;
+		this.resultsesForDrawHomeId = resultsesForDrawHomeId;
+
 		this.bets = bets;
 		this.matchesForClubVisitor = matchesForClubVisitor;
+		this.resultsesForDrawVisitorId = resultsesForDrawVisitorId;
 		this.matchesForClubHome = matchesForClubHome;
+		this.resultsesForLoseId = resultsesForLoseId;
 	}
 
 	@Id
@@ -147,22 +174,39 @@ public class Club implements java.io.Serializable {
 	@Column(name = "logo_path", length = 200)
 	public String getLogoPath() {
 		return this.logoPath;
+
+	}
+
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "club")
+	public Set<Results> getResultses() {
+		return this.resultses;
+
 	}
 
 	public void setLogoPath(String logoPath) {
 		this.logoPath = logoPath;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "club")
-	public Set<Results> getResultses() {
-		return this.resultses;
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "clubByVictoryId")
+	public Set<Results> getResultsesForVictoryId() {
+		return this.resultsesForVictoryId;
 	}
 
-	public void setResultses(Set<Results> resultses) {
-		this.resultses = resultses;
+	public void setResultsesForVictoryId(Set<Results> resultsesForVictoryId) {
+		this.resultsesForVictoryId = resultsesForVictoryId;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "club")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "clubByDrawHomeId")
+	public Set<Results> getResultsesForDrawHomeId() {
+		return this.resultsesForDrawHomeId;
+	}
+
+	public void setResultsesForDrawHomeId(Set<Results> resultsesForDrawHomeId) {
+		this.resultsesForDrawHomeId = resultsesForDrawHomeId;
+	}
+
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "club")
 	public Set<Bet> getBets() {
 		return this.bets;
 	}
@@ -171,7 +215,7 @@ public class Club implements java.io.Serializable {
 		this.bets = bets;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "clubByClubVisitor")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "clubByClubVisitor")
 	public Set<Match> getMatchesForClubVisitor() {
 		return this.matchesForClubVisitor;
 	}
@@ -180,13 +224,31 @@ public class Club implements java.io.Serializable {
 		this.matchesForClubVisitor = matchesForClubVisitor;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "clubByClubHome")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "clubByDrawVisitorId")
+	public Set<Results> getResultsesForDrawVisitorId() {
+		return this.resultsesForDrawVisitorId;
+	}
+
+	public void setResultsesForDrawVisitorId(Set<Results> resultsesForDrawVisitorId) {
+		this.resultsesForDrawVisitorId = resultsesForDrawVisitorId;
+	}
+
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "clubByClubHome")
 	public Set<Match> getMatchesForClubHome() {
 		return this.matchesForClubHome;
 	}
 
 	public void setMatchesForClubHome(Set<Match> matchesForClubHome) {
 		this.matchesForClubHome = matchesForClubHome;
+	}
+
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "clubByLoseId")
+	public Set<Results> getResultsesForLoseId() {
+		return this.resultsesForLoseId;
+	}
+
+	public void setResultsesForLoseId(Set<Results> resultsesForLoseId) {
+		this.resultsesForLoseId = resultsesForLoseId;
 	}
 
 }
