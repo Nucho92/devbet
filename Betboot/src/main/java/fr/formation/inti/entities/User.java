@@ -42,6 +42,7 @@ public class User implements java.io.Serializable {
 	@Valid
 	private Person person;
 
+	
 	@Email
 	private String mail;
 

@@ -35,6 +35,7 @@ public class Person implements java.io.Serializable {
 	@NotEmpty(message = "Champ requis")
 	private String lastName;
 
+
 	@Past
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date birthDate;

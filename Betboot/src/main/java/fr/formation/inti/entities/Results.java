@@ -1,5 +1,5 @@
 package fr.formation.inti.entities;
-// Generated 4 mai 2022, 11:33:36 by Hibernate Tools 4.3.5.Final
+// Generated 9 mai 2022, 11:57:32 by Hibernate Tools 4.3.5.Final
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -19,7 +19,10 @@ import javax.persistence.Table;
 public class Results implements java.io.Serializable {
 
 	private Integer resultId;
-	private Club club;
+	private Club clubByVictoryId;
+	private Club clubByDrawHomeId;
+	private Club clubByDrawVisitorId;
+	private Club clubByLoseId;
 	private Match match;
 	private Integer scoreA;
 	private Integer scoreB;
@@ -31,8 +34,12 @@ public class Results implements java.io.Serializable {
 		this.match = match;
 	}
 
-	public Results(Club club, Match match, Integer scoreA, Integer scoreB) {
-		this.club = club;
+	public Results(Club clubByVictoryId, Club clubByDrawHomeId, Club clubByDrawVisitorId, Club clubByLoseId,
+			Match match, Integer scoreA, Integer scoreB) {
+		this.clubByVictoryId = clubByVictoryId;
+		this.clubByDrawHomeId = clubByDrawHomeId;
+		this.clubByDrawVisitorId = clubByDrawVisitorId;
+		this.clubByLoseId = clubByLoseId;
 		this.match = match;
 		this.scoreA = scoreA;
 		this.scoreB = scoreB;
@@ -52,12 +59,42 @@ public class Results implements java.io.Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "victory_id")
-	public Club getClub() {
-		return this.club;
+	public Club getClubByVictoryId() {
+		return this.clubByVictoryId;
 	}
 
-	public void setClub(Club club) {
-		this.club = club;
+	public void setClubByVictoryId(Club clubByVictoryId) {
+		this.clubByVictoryId = clubByVictoryId;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "draw_home_id")
+	public Club getClubByDrawHomeId() {
+		return this.clubByDrawHomeId;
+	}
+
+	public void setClubByDrawHomeId(Club clubByDrawHomeId) {
+		this.clubByDrawHomeId = clubByDrawHomeId;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "draw_visitor_id")
+	public Club getClubByDrawVisitorId() {
+		return this.clubByDrawVisitorId;
+	}
+
+	public void setClubByDrawVisitorId(Club clubByDrawVisitorId) {
+		this.clubByDrawVisitorId = clubByDrawVisitorId;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "lose_id")
+	public Club getClubByLoseId() {
+		return this.clubByLoseId;
+	}
+
+	public void setClubByLoseId(Club clubByLoseId) {
+		this.clubByLoseId = clubByLoseId;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)

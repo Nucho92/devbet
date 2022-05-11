@@ -1,5 +1,5 @@
 package fr.formation.inti.entities;
-// Generated 4 mai 2022, 11:33:36 by Hibernate Tools 4.3.5.Final
+// Generated 9 mai 2022, 11:57:32 by Hibernate Tools 4.3.5.Final
 
 import java.util.Date;
 import java.util.HashSet;
@@ -27,6 +27,7 @@ public class Match implements java.io.Serializable {
 	private Integer matchId;
 	private Club clubByClubVisitor;
 	private Club clubByClubHome;
+	
 	private Date date;
 	private String location;
 	private Set<Bet> bets = new HashSet<Bet>(0);
@@ -59,7 +60,7 @@ public class Match implements java.io.Serializable {
 		this.matchId = matchId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "club_visitor")
 	public Club getClubByClubVisitor() {
 		return this.clubByClubVisitor;
@@ -69,7 +70,7 @@ public class Match implements java.io.Serializable {
 		this.clubByClubVisitor = clubByClubVisitor;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "club_home")
 	public Club getClubByClubHome() {
 		return this.clubByClubHome;
@@ -98,7 +99,7 @@ public class Match implements java.io.Serializable {
 		this.location = location;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "match")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "match")
 	public Set<Bet> getBets() {
 		return this.bets;
 	}
@@ -107,7 +108,7 @@ public class Match implements java.io.Serializable {
 		this.bets = bets;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "match")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "match")
 	public Set<Results> getResultses() {
 		return this.resultses;
 	}
@@ -116,7 +117,7 @@ public class Match implements java.io.Serializable {
 		this.resultses = resultses;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "match")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "match")
 	public Set<Bookmaker> getBookmakers() {
 		return this.bookmakers;
 	}

@@ -55,7 +55,7 @@ public class Bet implements java.io.Serializable {
 		this.betId = betId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "club_id")
 	public Club getClub() {
 		return this.club;
@@ -65,7 +65,7 @@ public class Bet implements java.io.Serializable {
 		this.club = club;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "match_id", nullable = false)
 	public Match getMatch() {
 		return this.match;
@@ -93,7 +93,7 @@ public class Bet implements java.io.Serializable {
 		this.rating = rating;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "bet")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "bet")
 	public Set<Gambling> getGamblings() {
 		return this.gamblings;
 	}
